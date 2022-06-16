@@ -15,9 +15,9 @@ export class AppGateway {
   @WebSocketServer()
   server: Server;
 
-  @SubscribeMessage('send_message')
+  @SubscribeMessage('create_message')
   async identity(@MessageBody() data: number): Promise<number> {
-    await this.server.sockets.emit('receive_message', data);
+    await this.server.sockets.emit('get_message', data);
     console.log(data);
     return data;
   }
