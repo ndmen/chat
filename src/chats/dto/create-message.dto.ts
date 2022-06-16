@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateChatDto } from './create-chat.dto';
+import { isNotEmpty } from 'class-validator';
 
-export class CreateMessageDto extends PartialType(CreateChatDto) {}
+export class CreateMessageDto {
+  @isNotEmpty()
+  sender_id: string;
+
+  @isNotEmpty()
+  receiver_id: string;
+
+  @isNotEmpty()
+  message: string;
+}
