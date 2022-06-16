@@ -4,19 +4,19 @@ import { CreateMessageDto } from './dto/create-message.dto';
 
 @Injectable()
 export class ChatsService {
-  createChat(createChatDto: CreateChatDto) {
-    return 'This action adds a new chat';
+  async createChat(createChatDto: CreateChatDto) {
+    return await 'This action adds a new chat';
   }
 
-  createMessage(createMessageDto: CreateMessageDto) {
-    return 'This action adds a new message';
+  async createMessage(createMessageDto: CreateMessageDto) {
+    return await 'This action adds a new message';
   }
 
-  findAllChats(id: string) {
-    return `This action returns a chats`;
+  async findAllChats(id: string) {
+    return await `This action returns a chats`;
   }
 
-  findAllMessages(id: string) {
-    return `This action returns a messages`;
+  async findAllMessages(id: string) {
+    return await `This action returns a messages`;
   }
 }

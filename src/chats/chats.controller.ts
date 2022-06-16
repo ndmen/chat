@@ -7,22 +7,23 @@ import { CreateMessageDto } from './dto/create-message.dto';
 export class ChatsController {
   constructor(private readonly chatsService: ChatsService) {}
 
-  @Post()
-  createChat(@Body() createChatDto: CreateChatDto) {
-    return this.chatsService.createChat(createChatDto);
+  @Post('create-chat')
+  async createChat(@Body() createChatDto: CreateChatDto) {
+    return await this.chatsService.createChat(createChatDto);
   }
 
-  createMessage(@Body() createMessageDto: CreateMessageDto) {
-    return this.chatsService.createMessage(createMessageDto);
-  }
-
-  @Get(':id')
-  getAllChatsByUserId(@Param(':id') id: string) {
-    return this.chatsService.findAllChats(id);
+  @Post('create-message')
+  async createMessage(@Body() createMessageDto: CreateMessageDto) {
+    return await this.chatsService.createMessage(createMessageDto);
   }
 
   @Get(':id')
-  getAllMessagesByChatId(@Param('id') id: string) {
-    return this.chatsService.findAllMessages(id);
+  async getAllChatsByUserId(@Param(':id') id: string) {
+    return await this.chatsService.findAllChats(id);
+  }
+
+  @Get(':id')
+  async getAllMessagesByChatId(@Param('id') id: string) {
+    return await this.chatsService.findAllMessages(id);
   }
 }
