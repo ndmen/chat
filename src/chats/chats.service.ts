@@ -12,11 +12,11 @@ export class ChatsService {
   }
 
   async createMessage(createMessageDto: CreateMessageDto) {
-    return await 'This action adds a new message';
+    return await this.chatsRepository.createMessage(createMessageDto);
   }
 
   async findAllChats(id: string) {
-    return await `This action returns a chats`;
+    return await this.chatsRepository.findAllChats(id);
   }
 
   async findAllMessages(id: string) {

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { ChatsService } from './chats.service';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { CreateMessageDto } from './dto/create-message.dto';
@@ -12,7 +12,7 @@ export class ChatsController {
     return await this.chatsService.createChat(createChatDto);
   }
 
-  @Post('create-message')
+  @Patch('create-message')
   async createMessage(@Body() createMessageDto: CreateMessageDto) {
     return await this.chatsService.createMessage(createMessageDto);
   }

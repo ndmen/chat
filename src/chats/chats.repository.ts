@@ -5,18 +5,34 @@ import { ChatDo } from 'src/_schemas/chat.do';
 export class ChatsRepository {
   constructor(
     @InjectModel('Chat')
-    private postModel: Model<ChatDo>,
+    private chatModel: Model<ChatDo>,
   ) {}
 
   async createChat(chat): Promise<any> {
-    const createOne = await this.postModel.create(chat);
+    const createOne = await this.chatModel.create(chat);
     return createOne;
   }
 
-  //   async findAll(): Promise<any> {
-  //     const findAll = await this.postModel.find();
-  //     return findAll;
-  //   }
+  async createMessage(message): Promise<any> {
+    const createOne = await this.chatModel.findByIdAndUpdate(
+      { _id: message.chat_id },
+      {
+        $push: {
+          messages: {
+            sender_id: message.sender_id,
+            message: message.message,
+          },
+        },
+      },
+      { new: true },
+    );
+    return createOne;
+  }
+
+  async findAllChats(id): Promise<any> {
+    const findAll = await this.chatModel.find({ users: { $all: [id] } });
+    return findAll;
+  }
 
   //   async findOne(id): Promise<any> {
   //     const findOne = await this.postModel.findById(id);
