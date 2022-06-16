@@ -17,12 +17,12 @@ export class ChatsController {
     return await this.chatsService.createMessage(createMessageDto);
   }
 
-  @Get(':id')
+  @Get('chats/:id')
   async getAllChatsByUserId(@Param(':id') id: string) {
     return await this.chatsService.findAllChats(id);
   }
 
-  @Get(':id')
+  @Get('messages/:id')
   async getAllMessagesByChatId(@Param('id') id: string) {
     return await this.chatsService.findAllMessages(id);
   }

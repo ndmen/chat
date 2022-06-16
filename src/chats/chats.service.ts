@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { CreateMessageDto } from './dto/create-message.dto';
+import { ChatsRepository } from './chats.repository';
 
 @Injectable()
 export class ChatsService {
+  constructor(private readonly chatsRepository: ChatsRepository) {}
+
   async createChat(createChatDto: CreateChatDto) {
-    return await 'This action adds a new chat';
+    return await this.chatsRepository.createChat(createChatDto);
   }
 
   async createMessage(createMessageDto: CreateMessageDto) {
