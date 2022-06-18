@@ -13,39 +13,8 @@ export class ChatsRepository {
     return createOne;
   }
 
-  async createMessage(message): Promise<any> {
-    const createOne = await this.chatModel.findByIdAndUpdate(
-      { _id: message.chat_id },
-      {
-        $push: {
-          messages: {
-            sender_id: message.sender_id,
-            message: message.message,
-          },
-        },
-      },
-      { new: true },
-    );
-    return createOne;
-  }
-
   async findAllChats(id): Promise<any> {
-    const findAll = await this.chatModel.find({ users: { $all: [id] } });
+    const findAll = await this.chatModel.find({ members: { $all: [id] } });
     return findAll;
   }
-
-  //   async findOne(id): Promise<any> {
-  //     const findOne = await this.postModel.findById(id);
-  //     return findOne;
-  //   }
-
-  //   async update(id, post): Promise<any> {
-  //     const update = await this.postModel.findByIdAndUpdate(id, post);
-  //     return update;
-  //   }
-
-  //   async remove(id): Promise<any> {
-  //     const remove = await this.postModel.findByIdAndDelete(id);
-  //     return remove;
-  //   }
 }

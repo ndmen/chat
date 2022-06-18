@@ -5,20 +5,9 @@ import { Document, ObjectId } from 'mongoose';
 export type ChatDocument = Chat & Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Message {
-  @Prop({ ref: 'User', type: SchemaTypes.ObjectId })
-  sender_id: ObjectId;
-
-  @Prop()
-  message: string;
-}
-@Schema({ versionKey: false, timestamps: true })
 export class Chat {
   @Prop({ ref: 'User', type: [SchemaTypes.ObjectId] })
-  users: [ObjectId];
-
-  @Prop()
-  messages: Message;
+  members: [ObjectId];
 }
 
 export const ChatSchema = SchemaFactory.createForClass(Chat);
