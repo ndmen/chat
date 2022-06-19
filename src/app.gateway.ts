@@ -1,10 +1,12 @@
 import {
   SubscribeMessage,
   OnGatewayConnection,
+  MessageBody,
   WebSocketGateway,
   WebSocketServer,
   OnGatewayInit,
   OnGatewayDisconnect,
+  ConnectedSocket,
 } from '@nestjs/websockets';
 import { CreateMessageDto } from './messages/dto/create-message.dto';
 import { Server, Socket } from 'socket.io';
@@ -28,11 +30,11 @@ export class AppGateway
 
   @SubscribeMessage('create_message')
   async handleSendMessage(
-    client: Socket,
-    payload: CreateMessageDto,
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: CreateMessageDto,
   ): Promise<void> {
     await this.messagesService.createMessage(payload);
-    await this.server.emit('responce_message', payload);
+    await this.server.emit('response_message', payload);
   }
 
   afterInit(server: Server) {
