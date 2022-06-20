@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppGateway } from './app.gateway';
@@ -12,7 +13,8 @@ import { MessagesModule } from './messages/messages.module';
   controllers: [AppController],
   providers: [AppService, AppGateway],
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/chat'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.CHAT_DB),
     UsersModule,
     ChatsModule,
     AuthModule,
