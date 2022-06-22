@@ -1,12 +1,14 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @ApiTags('messages')
 @Controller('messages')
 export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post('create-message')
   @ApiResponse({
     status: 201,
@@ -16,6 +18,7 @@ export class MessagesController {
     return await this.messagesService.createMessage(createMessageDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getAllMessagesByChatId(@Param('id') id: string) {
     return await this.messagesService.findAllMessages(id);

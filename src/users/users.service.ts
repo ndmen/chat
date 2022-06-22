@@ -5,6 +5,10 @@ import { UsersRepository } from './users.repository';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
+  async findOne(username): Promise<any> {
+    return this.usersRepository.findOne(username);
+  }
+
   async createOne(user): Promise<any> {
     const createOne = await this.usersRepository.createOne(user);
     return createOne;

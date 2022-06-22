@@ -8,6 +8,11 @@ export class UsersRepository {
     private userModel: Model<UserDo>,
   ) {}
 
+  async findOne(email): Promise<any> {
+    const findOne = await this.userModel.findOne({ email: email });
+    return findOne;
+  }
+
   async createOne(user): Promise<any> {
     const createOne = await this.userModel.create(user);
     return createOne;
