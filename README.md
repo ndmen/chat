@@ -24,7 +24,14 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+It is a chat on Nest.js(Passport(JWT+Local)), Socket.io and MongoDB(Mongoose). You can:
+1. Login, Register
+2. Create chat, Read chats by user_id.
+3. Create message, Read messages by chat_id.
+
+See OpenAPI(Swagger) http://localhost:3000/api/#/
+
+See blog on Handlebars http://localhost:3000/posts
 
 ## Installation
 
