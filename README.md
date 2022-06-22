@@ -31,8 +31,6 @@ It is a chat on Nest.js(Passport(JWT+Local)), Socket.io and MongoDB(Mongoose). Y
 
 See OpenAPI(Swagger) http://localhost:3000/api/#/
 
-See blog on Handlebars http://localhost:3000/posts
-
 ## Installation
 
 ```bash
